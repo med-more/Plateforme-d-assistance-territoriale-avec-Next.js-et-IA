@@ -1,0 +1,355 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark theme colors (default) - Black background with white text */
+    --openai-dark: 0 0 0; /* #000000 - Black */
+    --openai-darker: 0 0 0; /* Black */
+    --openai-gray: 30 30 30; /* Dark gray for borders */
+    --openai-light-gray: 50 50 50; /* Lighter gray */
+    --openai-text: 255 255 255; /* #FFFFFF - White */
+    --openai-text-muted: 200 200 200; /* Light gray for muted text */
+    --openai-green: 188 131 42; /* #BC832A */
+    --openai-green-hover: 160 110 35; /* Darker shade */
+    
+    /* Semantic Colors for Shadcn - Dark mode */
+    --background: 0 0 0; /* black */
+    --foreground: 255 255 255; /* white */
+    --primary: 188 131 42; /* openai-green */
+    --primary-foreground: 255 255 255; /* white */
+    --secondary: 30 30 30; /* dark gray */
+    --secondary-foreground: 255 255 255; /* white */
+    --muted: 20 20 20; /* darker gray */
+    --muted-foreground: 200 200 200; /* light gray */
+    --border: 30 30 30; /* dark gray */
+    --input: 30 30 30; /* dark gray */
+    --ring: 188 131 42; /* openai-green */
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+  }
+
+  .light {
+    /* Light theme colors */
+    --openai-dark: 255 252 237; /* #FFFCED - light background */
+    --openai-darker: 245 242 227; /* Lighter shade */
+    --openai-gray: 0 0 0; /* Black borders in light mode */
+    --openai-light-gray: 0 0 0; /* Black for lighter borders */
+    --openai-text: 13 84 102; /* #0D5466 - dark text */
+    --openai-text-muted: 50 70 80; /* Muted dark text */
+    --openai-green: 188 131 42; /* #BC832A - accent stays same */
+    --openai-green-hover: 160 110 35; /* Darker shade */
+    
+    /* Semantic Colors for Shadcn - Light mode */
+    --background: 255 252 237; /* light */
+    --foreground: 13 84 102; /* primary */
+    --primary: 188 131 42; /* secondary */
+    --primary-foreground: 255 252 237; /* light */
+    --secondary: 0 0 0; /* black for borders */
+    --secondary-foreground: 13 84 102; /* primary */
+    --muted: 245 242 227; /* lighter */
+    --muted-foreground: 50 70 80; /* muted dark */
+    --border: 0 0 0; /* black borders */
+    --input: 0 0 0; /* black borders */
+    --ring: 188 131 42; /* secondary */
+  }
+
+  /* Light mode styles for form labels and descriptions */
+  html.light [id*="form-item-description"],
+  html.light p[id*="form-item-description"] {
+    color: rgb(var(--openai-green)) !important;
+  }
+
+  html.light label[for*="form-item"],
+  html.light label[class*="form-label"],
+  html.light .form-label {
+    color: rgb(var(--openai-green)) !important;
+  }
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-cairo), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Creative Ramadan decorative elements */
+.ramadan-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(var(--openai-green), 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(var(--openai-green), 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(var(--openai-green), 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 60% 70%, rgba(var(--openai-green), 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.lantern-decoration {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  opacity: 0.08;
+  background: radial-gradient(ellipse at center, rgba(var(--openai-green), 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.lantern-decoration-1 {
+  top: 10%;
+  left: 10%;
+}
+
+.lantern-decoration-2 {
+  top: 60%;
+  right: 15%;
+  width: 250px;
+  height: 250px;
+}
+
+.lantern-decoration-3 {
+  bottom: 20%;
+  left: 20%;
+  width: 200px;
+  height: 200px;
+}
+
+.ramadan-glow {
+  position: relative;
+}
+
+.ramadan-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(var(--openai-green), 0.2) 0%, rgba(var(--openai-green), 0.1) 30%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+}
+
+.ramadan-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(var(--openai-green), 0.3) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: -1;
+}
+
+.geometric-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(var(--openai-green), 0.15) 15px, rgba(var(--openai-green), 0.15) 30px),
+    repeating-linear-gradient(-45deg, transparent, transparent 15px, rgba(var(--openai-green), 0.15) 15px, rgba(var(--openai-green), 0.15) 30px);
+  pointer-events: none;
+}
+
+/* Creative floating particles - Static */
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(var(--openai-green), 0.2);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.particle:nth-child(1) { left: 10%; top: 20%; }
+.particle:nth-child(2) { left: 20%; top: 40%; }
+.particle:nth-child(3) { left: 30%; top: 60%; }
+.particle:nth-child(4) { left: 40%; top: 30%; }
+.particle:nth-child(5) { left: 50%; top: 50%; }
+.particle:nth-child(6) { left: 60%; top: 70%; }
+.particle:nth-child(7) { left: 70%; top: 25%; }
+.particle:nth-child(8) { left: 80%; top: 45%; }
+.particle:nth-child(9) { left: 90%; top: 65%; }
+
+/* Creative gradient text effect */
+.gradient-text-creative {
+  background: linear-gradient(135deg, rgb(var(--openai-green)) 0%, rgb(var(--openai-green-hover)) 50%, rgb(var(--openai-green)) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Creative card hover effect */
+.card-creative {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-creative::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(var(--openai-green), 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card-creative:hover::before {
+  opacity: 1;
+}
+
+/* Creative border animation */
+.border-animated {
+  position: relative;
+  background: linear-gradient(90deg, transparent, rgba(var(--openai-green), 0.3), transparent);
+  background-size: 200% 100%;
+  animation: border-flow 3s linear infinite;
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Creative moon icon effect - Static */
+.moon-creative {
+  position: relative;
+  filter: drop-shadow(0 0 20px rgba(var(--openai-green), 0.3));
+}
+
+.moon-creative::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--openai-green), 0.2) 0%, transparent 70%);
+  z-index: -1;
+}
+
+/* Sadaqa Pulse Animation */
+@keyframes sadaqa-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.sadaqa-pulse {
+  animation: sadaqa-pulse 2s ease-in-out infinite;
+}
+
+/* Lantern Glow Effect - Removed shadows */
+
+/* Creative scrollbar - OpenAI style */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--openai-text-muted), 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--openai-text-muted), 0.5);
+}
+
+/* Creative text selection */
+::selection {
+  background: rgba(var(--openai-green), 0.3);
+  color: rgb(var(--openai-text));
+}
+
+::-moz-selection {
+  background: rgba(var(--openai-green), 0.3);
+  color: rgb(var(--openai-text));
+}
+
+/* Creative focus ring */
+*:focus-visible {
+  outline: 2px solid rgba(var(--openai-green), 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Message animation */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: messageSlideIn 0.3s ease-out;
+}

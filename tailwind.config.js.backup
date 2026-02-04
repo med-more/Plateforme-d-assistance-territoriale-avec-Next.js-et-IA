@@ -1,0 +1,71 @@
+// Configuration Tailwind v3 (fallback si v4 n'est pas disponible)
+// Renommez ce fichier en tailwind.config.js si vous utilisez Tailwind v3
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "ramadan-gold": "#d4af37",
+        "ramadan-amber": "#ff8c00",
+        "ramadan-lantern": "#ffd700",
+        "ramadan-deep-blue": "#1a1f3a",
+        "ramadan-night": "#0f1419",
+        "ramadan-sky": "#2c3e50",
+        "ramadan-moon": "#f5f5dc",
+        "ramadan-sand": "#e8dcc6",
+        "ramadan-terracotta": "#c97d60",
+        "ramadan-green": "#2d5016",
+        background: "var(--color-ramadan-night)",
+        foreground: "var(--color-ramadan-moon)",
+        primary: {
+          DEFAULT: "var(--color-ramadan-lantern)",
+          foreground: "var(--color-ramadan-deep-blue)",
+        },
+        secondary: {
+          DEFAULT: "var(--color-ramadan-amber)",
+          foreground: "var(--color-ramadan-night)",
+        },
+        muted: {
+          DEFAULT: "var(--color-ramadan-sky)",
+          foreground: "var(--color-ramadan-sand)",
+        },
+        border: "var(--color-ramadan-sky)",
+        input: "var(--color-ramadan-sky)",
+        ring: "var(--color-ramadan-lantern)",
+      },
+      borderRadius: {
+        lg: "var(--radius-lg)",
+        md: "var(--radius-md)",
+        sm: "var(--radius-sm)",
+      },
+      keyframes: {
+        "sadaqa-pulse": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.05)" },
+        },
+        "lantern-glow": {
+          "0%, 100%": {
+            boxShadow:
+              "0 0 10px var(--color-ramadan-lantern), 0 0 20px var(--color-ramadan-lantern)",
+          },
+          "50%": {
+            boxShadow:
+              "0 0 20px var(--color-ramadan-lantern), 0 0 30px var(--color-ramadan-lantern), 0 0 40px var(--color-ramadan-amber)",
+          },
+        },
+      },
+      animation: {
+        "sadaqa-pulse": "sadaqa-pulse 2s ease-in-out infinite",
+        "lantern-glow": "lantern-glow 3s ease-in-out infinite",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+};
