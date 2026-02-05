@@ -4,12 +4,69 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { 
   Users, Sparkles, FileText, MessageSquare, Upload, ArrowRight, Target, Coins, Building2, Twitter, Facebook, Instagram, Youtube
 } from "lucide-react";
 import { RamadanStarIcon, RamadanLanternIcon, DonationHandIcon } from "@/components/icons/ramadan-icon";
 import { LottieAnimation } from "@/components/animations/lottie-animation";
 import mosqueAnimation from "@/assets/Mosque Animation.json";
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } }
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } }
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+// Animated Section Component
+function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={fadeInUp}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function HomePage() {
   useEffect(() => {
@@ -53,30 +110,45 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center w-full">
               
               {/* Left Side - Text Content */}
-              <div className="space-y-2 sm:space-y-3 text-center lg:text-left">
+              <motion.div 
+                className="space-y-2 sm:space-y-3 text-center lg:text-left"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+              >
                 {/* Arabic Title */}
-                <h1 
+                <motion.h1 
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-openai-text leading-tight"
                   style={{ 
                     fontFamily: 'var(--font-amiri), serif',
                     letterSpacing: '0.02em'
                   }}
+                  variants={fadeInUp}
                 >
                   رمضان كريم
-                </h1>
+                </motion.h1>
                 
                 {/* English Title */}
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-openai-text-muted leading-tight">
+                <motion.h2 
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-openai-text-muted leading-tight"
+                  variants={fadeInUp}
+                >
                   Happy Ramadan Kareem
-                </h2>
+                </motion.h2>
                 
                 {/* Subtitle */}
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-openai-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                <motion.p 
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-openai-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                  variants={fadeInUp}
+                >
                   Plateforme d'Entraide Citoyenne Intelligente pour les associations caritatives de Casablanca
-                </p>
+                </motion.p>
                 
                 {/* Feature Badges */}
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 pt-1">
+                <motion.div 
+                  className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 pt-1"
+                  variants={staggerContainer}
+                >
                   {[
                     { icon: Sparkles, text: "IA Assistante" },
                     { icon: Users, text: "Gestion Familles" },
@@ -84,33 +156,48 @@ export default function HomePage() {
                   ].map((feature, index) => {
                     const Icon = feature.icon;
                     return (
-                      <div
+                      <motion.div
                         key={index}
                         className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-openai-darker/50 border border-openai-gray/30 hover:border-openai-green/50 transition-all duration-300"
+                        variants={fadeInUp}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         <Icon className="w-3 h-3 text-openai-green" />
                         <span className="text-[10px] font-medium text-openai-text-muted">
                           {feature.text}
                         </span>
-                      </div>
+                      </motion.div>
                     );
                   })}
-                </div>
+                </motion.div>
                 
                 {/* CTA Button */}
-                <div className="pt-1">
-                  <Link
-                    href="/dashboard"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-openai-green text-white font-semibold text-xs sm:text-sm rounded-lg hover:bg-openai-green-hover transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform"
-                  >
-                    <span>Accéder au Dashboard</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                <motion.div 
+                  className="pt-1"
+                  variants={fadeInUp}
+                >
+                  <Link href="/dashboard">
+                    <motion.div
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-openai-green text-white font-semibold text-xs sm:text-sm rounded-lg shadow-lg"
+                      whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(188, 131, 42, 0.3)" }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      <span>Accéder au Dashboard</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </motion.div>
                   </Link>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Right Side - Mosque Animation */}
-              <div className="relative flex items-center justify-center lg:justify-end h-full">
+              <motion.div 
+                className="relative flex items-center justify-center lg:justify-end h-full"
+                variants={scaleIn}
+                initial="hidden"
+                animate="visible"
+              >
                 <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl h-full flex items-center">
                   {/* Decorative gradient circle behind animation */}
                   <div className="absolute inset-0 -z-10">
@@ -132,13 +219,18 @@ export default function HomePage() {
                   <div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-openai-green/5 blur-2xl" />
                   <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-openai-green/5 blur-3xl" />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
 
         {/* Social Media Icons - Right Side, positioned in viewport */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-4 lg:right-6 z-20 flex flex-col gap-2">
+        <motion.div 
+          className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-4 lg:right-6 z-20 flex flex-col gap-2"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
           {[
             { name: 'Twitter', Icon: Twitter, href: '#', color: 'bg-sky-500/90 hover:bg-sky-600' },
             { name: 'Facebook', Icon: Facebook, href: '#', color: 'bg-blue-600/90 hover:bg-blue-700' },
@@ -147,17 +239,21 @@ export default function HomePage() {
           ].map((social, index) => {
             const Icon = social.Icon;
             return (
-              <a
+              <motion.a
                 key={index}
                 href={social.href}
-                className={`w-8 h-8 sm:w-9 sm:h-9 ${social.color} rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl backdrop-blur-sm`}
+                className={`w-8 h-8 sm:w-9 sm:h-9 ${social.color} rounded-full flex items-center justify-center text-white shadow-lg backdrop-blur-sm`}
                 aria-label={social.name}
+                variants={fadeIn}
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
+              </motion.a>
             );
           })}
-        </div>
+        </motion.div>
       </section>
 
       {/* Main Content Section - Welcome */}
@@ -165,20 +261,39 @@ export default function HomePage() {
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Image */}
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden border-4 border-openai-dark shadow-2xl">
-                <div 
-                  className="aspect-[4/5] bg-cover bg-center"
-                  style={{
-                    backgroundImage: "url('/1.png')"
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-openai-dark/60 to-transparent" />
-              </div>
-            </div>
+            <AnimatedSection>
+              <motion.div 
+                className="relative"
+                variants={slideInLeft}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                <motion.div 
+                  className="relative rounded-2xl overflow-hidden border-4 border-openai-dark shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                >
+                  <div 
+                    className="aspect-[4/5] bg-cover bg-center"
+                    style={{
+                      backgroundImage: "url('/1.png')"
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-openai-dark/60 to-transparent" />
+                </motion.div>
+              </motion.div>
+            </AnimatedSection>
 
             {/* Right Side - Welcome Content */}
-            <div className="space-y-6 sm:space-y-8">
+            <AnimatedSection>
+              <motion.div 
+                className="space-y-6 sm:space-y-8"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+              >
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-openai-text mb-4" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                   مرحبا بكم في أورا-لينك
@@ -198,7 +313,10 @@ export default function HomePage() {
               </div>
 
               {/* Services Grid */}
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6">
+              <motion.div 
+                className="grid grid-cols-2 gap-4 sm:gap-6 pt-6"
+                variants={staggerContainer}
+              >
                 {[
                   { icon: DonationHandIcon, title: "Zakat & Sadaqa", titleAr: "الزكاة والصدقة", desc: "Gestion des dons" },
                   { icon: Users, title: "Familles Nécessiteuses", titleAr: "الأسر المحتاجة", desc: "Suivi des bénéficiaires" },
@@ -207,9 +325,12 @@ export default function HomePage() {
                 ].map((service, index) => {
                   const Icon = service.icon;
                   return (
-                    <div
+                    <motion.div
                       key={index}
-                      className="p-4 sm:p-6 bg-openai-darker/50 border border-openai-gray/30 rounded-xl hover:border-openai-green/50 transition-all duration-300 hover:shadow-lg"
+                      className="p-4 sm:p-6 bg-openai-darker/50 border border-openai-gray/30 rounded-xl hover:border-openai-green/50 transition-all duration-300"
+                      variants={fadeInUp}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-openai-green/10 flex items-center justify-center mb-3">
                         <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-openai-green" />
@@ -223,11 +344,12 @@ export default function HomePage() {
                       <p className="text-xs text-openai-text-muted/70">
                         {service.desc}
                       </p>
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
-            </div>
+              </motion.div>
+              </motion.div>
+            </AnimatedSection>
           </div>
         </div>
       </section>

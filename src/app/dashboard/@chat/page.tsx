@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion, AnimatePresence } from "framer-motion";
 import { Send, Moon, User, Bot, Sparkles as SparklesIcon } from "lucide-react";
 import { RamadanMoonIcon } from "@/components/icons/ramadan-icon";
 import { Button } from "@/components/ui/button";
@@ -96,16 +97,23 @@ function useTypingEffect(text: string, speed: number = 15) {
 }
 
 // Message component with typing effect for assistant messages
-function ChatMessage({ message, mounted }: { message: Message; mounted: boolean }) {
+function ChatMessage({ message, mounted, index }: { message: Message; mounted: boolean; index: number }) {
   const typingEffect = message.role === "assistant" 
     ? useTypingEffect(message.content, 15)
     : { displayedText: message.content, isTyping: false };
 
   return (
-    <div
+    <motion.div
       className={`group flex gap-3 sm:gap-4 ${
         message.role === "user" ? "justify-end" : "justify-start"
       }`}
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ 
+        duration: 0.4,
+        delay: index * 0.1,
+        ease: "easeOut"
+      }}
     >
       {message.role === "assistant" && (
         <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-openai-green/20 to-openai-green/5 flex items-center justify-center flex-shrink-0 mt-1 ring-2 ring-openai-green/10">
@@ -159,7 +167,7 @@ function ChatMessage({ message, mounted }: { message: Message; mounted: boolean 
           <User className="w-4 h-4 sm:w-5 sm:h-5 text-openai-text" />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -345,11 +353,13 @@ export default function ChatPage() {
             </div>
           )}
 
-          <div className="space-y-6 sm:space-y-8">
-            {messages.map((message) => (
-              <ChatMessage key={message.id} message={message} mounted={mounted} />
-            ))}
-          </div>
+          <AnimatePresence mode="popLayout">
+            <div className="space-y-6 sm:space-y-8">
+              {messages.map((message, index) => (
+                <ChatMessage key={message.id} message={message} mounted={mounted} index={index} />
+              ))}
+            </div>
+          </AnimatePresence>
         </div>
       </div>
 
