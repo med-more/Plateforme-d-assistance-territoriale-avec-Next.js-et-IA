@@ -240,9 +240,12 @@ export default function ExplorerPage() {
       {families.length > 0 && (
         <motion.div 
           className="bg-openai-darker/50 backdrop-blur-sm border border-openai-gray/30 rounded-xl p-5 sm:p-7 shadow-xl overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ 
+            duration: 1,
+            ease: [0.25, 0.1, 0.25, 1]
+          }}
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-openai-green/20 to-openai-green/5 flex items-center justify-center ring-2 ring-openai-green/10">
@@ -261,10 +264,17 @@ export default function ExplorerPage() {
             {/* Total Families */}
             <motion.div 
               className="bg-openai-dark rounded-xl p-4 border border-openai-gray/20 hover:border-openai-green/30 transition-all"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.1, 
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              whileHover={{ 
+                y: -3,
+                transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+              }}
             >
               <div className="flex items-center justify-between mb-2">
                 <Users className="w-5 h-5 text-openai-green/70" />
@@ -276,10 +286,17 @@ export default function ExplorerPage() {
             {/* Total Members */}
             <motion.div 
               className="bg-openai-dark rounded-xl p-4 border border-openai-gray/20 hover:border-openai-green/30 transition-all"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.3 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.2, 
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              whileHover={{ 
+                y: -3,
+                transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+              }}
             >
               <div className="flex items-center justify-between mb-2">
                 <Users className="w-5 h-5 text-blue-400/70" />
@@ -291,10 +308,17 @@ export default function ExplorerPage() {
             {/* Total Needs */}
             <motion.div 
               className="bg-openai-dark rounded-xl p-4 border border-openai-gray/20 hover:border-openai-green/30 transition-all"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.3 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.3, 
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              whileHover={{ 
+                y: -3,
+                transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+              }}
             >
               <div className="flex items-center justify-between mb-2">
                 <AlertCircle className="w-5 h-5 text-yellow-400/70" />
@@ -306,10 +330,17 @@ export default function ExplorerPage() {
             {/* Average Members */}
             <motion.div 
               className="bg-openai-dark rounded-xl p-4 border border-openai-gray/20 hover:border-openai-green/30 transition-all"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.3 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.4, 
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              whileHover={{ 
+                y: -3,
+                transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+              }}
             >
               <div className="flex items-center justify-between mb-2">
                 <TrendingUp className="w-5 h-5 text-purple-400/70" />
@@ -326,30 +357,43 @@ export default function ExplorerPage() {
             className="mb-6"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.3 }}
+            transition={{ 
+              delay: 0.5, 
+              duration: 0.8,
+              ease: [0.25, 0.1, 0.25, 1]
+            }}
           >
             <h4 className="text-sm font-semibold text-openai-text-muted mb-3 uppercase tracking-wide">Répartition par Priorité</h4>
             <div className="grid grid-cols-3 gap-3">
               <motion.div 
                 className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <div className="text-2xl font-bold text-red-400 mb-1">{stats.byPriority.high}</div>
                 <div className="text-xs font-medium text-red-400/80">Haute</div>
               </motion.div>
               <motion.div 
                 className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <div className="text-2xl font-bold text-yellow-400 mb-1">{stats.byPriority.medium}</div>
                 <div className="text-xs font-medium text-yellow-400/80">Moyenne</div>
               </motion.div>
               <motion.div 
                 className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <div className="text-2xl font-bold text-green-400 mb-1">{stats.byPriority.low}</div>
                 <div className="text-xs font-medium text-green-400/80">Basse</div>
@@ -362,7 +406,11 @@ export default function ExplorerPage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.3 }}
+              transition={{ 
+                delay: 0.6, 
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
             >
               <h4 className="text-sm font-semibold text-openai-text-muted mb-3 uppercase tracking-wide">Besoins les Plus Fréquents</h4>
               <div className="flex flex-wrap gap-2">

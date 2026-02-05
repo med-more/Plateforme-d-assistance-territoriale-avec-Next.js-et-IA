@@ -107,12 +107,12 @@ function ChatMessage({ message, mounted, index }: { message: Message; mounted: b
       className={`group flex gap-3 sm:gap-4 ${
         message.role === "user" ? "justify-end" : "justify-start"
       }`}
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ 
-        duration: 0.4,
-        delay: index * 0.1,
-        ease: "easeOut"
+        duration: 0.8,
+        delay: index * 0.05,
+        ease: [0.25, 0.1, 0.25, 1]
       }}
     >
       {message.role === "assistant" && (

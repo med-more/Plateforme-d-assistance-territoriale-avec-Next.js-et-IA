@@ -13,30 +13,64 @@ import { RamadanStarIcon, RamadanLanternIcon, DonationHandIcon } from "@/compone
 import { LottieAnimation } from "@/components/animations/lottie-animation";
 import mosqueAnimation from "@/assets/Mosque Animation.json";
 
-// Animation variants
+// Professional, relaxing, and smooth animation variants
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 1.2, 
+      ease: [0.25, 0.1, 0.25, 1] // Custom cubic-bezier for smooth easing
+    } 
+  }
 };
 
 const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
+  visible: { 
+    opacity: 1, 
+    transition: { 
+      duration: 1.5, 
+      ease: [0.25, 0.1, 0.25, 1]
+    } 
+  }
 };
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } }
+  hidden: { opacity: 0, x: -30 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { 
+      duration: 1.4, 
+      ease: [0.25, 0.1, 0.25, 1]
+    } 
+  }
 };
 
 const slideInRight = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } }
+  hidden: { opacity: 0, x: 30 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { 
+      duration: 1.4, 
+      ease: [0.25, 0.1, 0.25, 1]
+    } 
+  }
 };
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { 
+      duration: 1.6, 
+      ease: [0.25, 0.1, 0.25, 1]
+    } 
+  }
 };
 
 const staggerContainer = {
@@ -44,8 +78,8 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.15,
+      delayChildren: 0.3
     }
   }
 };
@@ -160,8 +194,11 @@ export default function HomePage() {
                         key={index}
                         className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-openai-darker/50 border border-openai-gray/30 hover:border-openai-green/50 transition-all duration-300"
                         variants={fadeInUp}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ 
+                          scale: 1.02,
+                          y: -2,
+                          transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+                        }}
                       >
                         <Icon className="w-3 h-3 text-openai-green" />
                         <span className="text-[10px] font-medium text-openai-text-muted">
@@ -180,9 +217,13 @@ export default function HomePage() {
                   <Link href="/dashboard">
                     <motion.div
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-openai-green text-white font-semibold text-xs sm:text-sm rounded-lg shadow-lg"
-                      whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(188, 131, 42, 0.3)" }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      whileHover={{ 
+                        scale: 1.02,
+                        y: -2,
+                        boxShadow: "0 8px 20px rgba(188, 131, 42, 0.25)",
+                        transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                      }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                     >
                       <span>Accéder au Dashboard</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -245,9 +286,12 @@ export default function HomePage() {
                 className={`w-8 h-8 sm:w-9 sm:h-9 ${social.color} rounded-full flex items-center justify-center text-white shadow-lg backdrop-blur-sm`}
                 aria-label={social.name}
                 variants={fadeIn}
-                whileHover={{ scale: 1.15, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                whileHover={{ 
+                  scale: 1.08,
+                  y: -3,
+                  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </motion.a>
@@ -271,8 +315,11 @@ export default function HomePage() {
               >
                 <motion.div 
                   className="relative rounded-2xl overflow-hidden border-4 border-openai-dark shadow-2xl"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  whileHover={{ 
+                    scale: 1.01,
+                    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+                  }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                   <div 
                     className="aspect-[4/5] bg-cover bg-center"
@@ -329,8 +376,12 @@ export default function HomePage() {
                       key={index}
                       className="p-4 sm:p-6 bg-openai-darker/50 border border-openai-gray/30 rounded-xl hover:border-openai-green/50 transition-all duration-300"
                       variants={fadeInUp}
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      whileHover={{ 
+                        scale: 1.02,
+                        y: -3,
+                        transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                      }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                     >
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-openai-green/10 flex items-center justify-center mb-3">
                         <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-openai-green" />
@@ -453,7 +504,7 @@ export default function HomePage() {
                     </div>
                     
                     {/* Icon */}
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-openai-green/10 border border-openai-green/20 flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-openai-green/10 border border-openai-green/20 flex items-center justify-center mx-auto mb-4 sm:mb-6 transition-transform duration-500 ease-[0.25,0.1,0.25,1] group-hover:scale-105">
                       <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-openai-green" />
                       {DecorationIcon && (
                         <div className="absolute -top-2 -right-2 animate-pulse">
