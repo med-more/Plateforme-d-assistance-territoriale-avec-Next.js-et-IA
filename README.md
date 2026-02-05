@@ -66,7 +66,7 @@ PINECONE_ENVIRONMENT=us-east-1
 
 - Connectez-vous à [Pinecone](https://www.pinecone.io/)
 - Créez un nouvel index nommé `casa-ramadan-2026`
-- Dimension : 384 (ou ajustez selon votre service d'embedding)
+- Dimension : 768 (doit correspondre à la dimension des embeddings)
 - Métrique : cosine
 
 5. **Lancer le serveur de développement**

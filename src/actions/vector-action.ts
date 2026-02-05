@@ -145,7 +145,20 @@ export async function vectorAction(
  */
 function chunkText(text: string, chunkSize: number, overlap: number): string[] {
   const chunks: string[] = [];
-  let start = 0;
+  
+  // Validation des paramètres
+  if (chunkSize <= 0) {
+    throw new Error("chunkSize doit être supérieur à 0");
+  }
+  
+  if (overlap < 0) {
+    overlap = 0;
+  }
+  
+  // S'assurer que overlap est inférieur à chunkSize pour éviter les boucles infinies
+  if (overlap >= chunkSize) {
+    overlap = Math.floor(chunkSize * 0.2); // Utiliser 20% de chunkSize comme overlap par défaut
+  }
 
   // Nettoyer le texte (supprimer les espaces multiples, sauts de ligne excessifs)
   const cleanedText = text
@@ -153,7 +166,18 @@ function chunkText(text: string, chunkSize: number, overlap: number): string[] {
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 
-  while (start < cleanedText.length) {
+  // Si le texte est vide, retourner un tableau vide
+  if (cleanedText.length === 0) {
+    return chunks;
+  }
+
+  let start = 0;
+  const maxChunks = 10000; // Limite de sécurité pour éviter les tableaux trop grands
+  let iterations = 0;
+
+  while (start < cleanedText.length && chunks.length < maxChunks && iterations < maxChunks * 2) {
+    iterations++;
+    
     const end = Math.min(start + chunkSize, cleanedText.length);
     const chunk = cleanedText.slice(start, end).trim();
     
@@ -161,10 +185,26 @@ function chunkText(text: string, chunkSize: number, overlap: number): string[] {
       chunks.push(chunk);
     }
     
-    start = end - overlap;
+    // Calculer la position de départ pour le prochain chunk
+    const nextStart = end - overlap;
     
-    // Éviter les boucles infinies
-    if (start >= cleanedText.length) break;
+    // S'assurer que nextStart progresse toujours
+    if (nextStart <= start) {
+      // Si nextStart n'a pas progressé, avancer d'au moins 1 caractère
+      start = start + 1;
+    } else {
+      start = nextStart;
+    }
+    
+    // Sécurité supplémentaire : si on n'a pas progressé, sortir de la boucle
+    if (start >= cleanedText.length) {
+      break;
+    }
+  }
+
+  // Avertir si on a atteint la limite
+  if (chunks.length >= maxChunks) {
+    console.warn(`Limite de ${maxChunks} chunks atteinte. Le texte a été tronqué.`);
   }
 
   return chunks;

@@ -14,20 +14,20 @@
     --openai-green: 188 131 42; /* #BC832A */
     --openai-green-hover: 160 110 35; /* Darker shade */
     
-    /* Semantic Colors for Shadcn - Dark mode */
-    --background: 0 0 0; /* black */
-    --foreground: 255 255 255; /* white */
-    --primary: 188 131 42; /* openai-green */
-    --primary-foreground: 255 255 255; /* white */
-    --secondary: 30 30 30; /* dark gray */
-    --secondary-foreground: 255 255 255; /* white */
-    --muted: 20 20 20; /* darker gray */
-    --muted-foreground: 200 200 200; /* light gray */
-    --border: 30 30 30; /* dark gray */
-    --input: 30 30 30; /* dark gray */
-    --ring: 188 131 42; /* openai-green */
-    --destructive: 239 68 68;
-    --destructive-foreground: 255 255 255;
+    /* Semantic Colors for Shadcn - Dark mode (HSL format) */
+    --background: 0 0% 0%; /* black */
+    --foreground: 0 0% 100%; /* white */
+    --primary: 35 64% 45%; /* openai-green */
+    --primary-foreground: 0 0% 100%; /* white */
+    --secondary: 0 0% 12%; /* dark gray */
+    --secondary-foreground: 0 0% 100%; /* white */
+    --muted: 0 0% 8%; /* darker gray */
+    --muted-foreground: 0 0% 78%; /* light gray */
+    --border: 0 0% 12%; /* dark gray */
+    --input: 0 0% 12%; /* dark gray */
+    --ring: 35 64% 45%; /* openai-green */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
     
     /* Border Radius */
     --radius-sm: 0.25rem;
@@ -38,8 +38,8 @@
 
   .light {
     /* Light theme colors */
-    --openai-dark: 255 252 237; /* #FFFCED - light background */
-    --openai-darker: 245 242 227; /* Lighter shade */
+    --openai-dark: 255 255 255; /* #FFFFFF - white background */
+    --openai-darker: 250 250 250; /* Very light gray */
     --openai-gray: 0 0 0; /* Black borders in light mode */
     --openai-light-gray: 0 0 0; /* Black for lighter borders */
     --openai-text: 13 84 102; /* #0D5466 - dark text */
@@ -47,18 +47,18 @@
     --openai-green: 188 131 42; /* #BC832A - accent stays same */
     --openai-green-hover: 160 110 35; /* Darker shade */
     
-    /* Semantic Colors for Shadcn - Light mode */
-    --background: 255 252 237; /* light */
-    --foreground: 13 84 102; /* primary */
-    --primary: 188 131 42; /* secondary */
-    --primary-foreground: 255 252 237; /* light */
-    --secondary: 0 0 0; /* black for borders */
-    --secondary-foreground: 13 84 102; /* primary */
-    --muted: 245 242 227; /* lighter */
-    --muted-foreground: 50 70 80; /* muted dark */
-    --border: 0 0 0; /* black borders */
-    --input: 0 0 0; /* black borders */
-    --ring: 188 131 42; /* secondary */
+    /* Semantic Colors for Shadcn - Light mode (HSL format) */
+    --background: 0 0% 100%; /* white */
+    --foreground: 193 78% 23%; /* #0D5466 - primary */
+    --primary: 35 64% 45%; /* #BC832A - secondary */
+    --primary-foreground: 0 0% 100%; /* white */
+    --secondary: 0 0% 0%; /* black for borders */
+    --secondary-foreground: 193 78% 23%; /* primary */
+    --muted: 0 0% 98%; /* very light gray */
+    --muted-foreground: 193 30% 25%; /* muted dark */
+    --border: 0 0% 0%; /* black borders */
+    --input: 0 0% 0%; /* black borders */
+    --ring: 35 64% 45%; /* secondary */
   }
 
   /* Light mode styles for form labels and descriptions */
@@ -82,6 +82,19 @@ body {
   @apply bg-background text-foreground;
   font-family: var(--font-cairo), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Force white background in light mode for body and html */
+html.light,
+html.light body {
+  background-color: #FFFFFF !important;
+}
+
+/* Force white background for dashboard and all containers in light mode */
+html.light .min-h-screen,
+html.light [class*="bg-openai-dark"],
+html.light [class*="bg-background"] {
+  background-color: #FFFFFF !important;
 }
 
 /* Creative Ramadan decorative elements */

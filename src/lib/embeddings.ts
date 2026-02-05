@@ -1,6 +1,8 @@
 /**
  * Service d'embedding pour générer des vecteurs à partir de texte
  * Utilise l'API Google Generative AI pour les embeddings
+ * 
+ * Dimension: 768 (doit correspondre à la dimension de votre index Pinecone)
  */
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -112,9 +114,10 @@ export async function generateEmbeddings(
 /**
  * Génère un embedding simulé (fallback)
  * Utilise une fonction de hachage simple pour générer des valeurs cohérentes
+ * Dimension: 768 (doit correspondre à la dimension de votre index Pinecone)
  */
 function generateSimulatedEmbedding(text: string): number[] {
-  const dimension = 384;
+  const dimension = 768;
   const embedding: number[] = [];
   
   // Utiliser un hash simple pour générer des valeurs cohérentes

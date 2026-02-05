@@ -73,12 +73,6 @@ export function Navbar() {
       labelAr: "الخدمات",
       icon: Home,
     },
-    {
-      href: "/#contact",
-      label: "Contact",
-      labelAr: "اتصل بنا",
-      icon: Home,
-    },
   ];
 
   const isActive = (href: string) => {

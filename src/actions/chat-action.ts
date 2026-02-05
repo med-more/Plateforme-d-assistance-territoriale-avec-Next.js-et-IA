@@ -26,7 +26,19 @@ export async function chatAction(
 
     // Initialiser Gemini
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    
+    // Liste des modèles Gemini 2.5 à essayer dans l'ordre de priorité
+    // Essayer d'abord les modèles Gemini 2.5, puis fallback vers 2.0 et 1.5
+    const availableModels = [
+      "gemini-2.5-pro",        // Gemini 2.5 Pro (recommandé)
+      "gemini-2.5-flash",      // Gemini 2.5 Flash (rapide)
+      "gemini-2.5-pro-exp",    // Gemini 2.5 Pro (expérimental)
+      "gemini-2.5-flash-exp",  // Gemini 2.5 Flash (expérimental)
+      "gemini-2.0-flash-exp",  // Fallback: Gemini 2.0 Flash (expérimental)
+      "gemini-2.0-flash",      // Fallback: Gemini 2.0 Flash (stable)
+      "gemini-1.5-flash",      // Fallback: Gemini 1.5 Flash
+      "gemini-1.5-pro",        // Fallback: Gemini 1.5 Pro
+    ];
 
     // Récupérer le contexte depuis Pinecone (RAG)
     let context = "";
@@ -99,8 +111,61 @@ Instructions importantes:
       : `${systemPrompt}\n\n=== QUESTION DE L'UTILISATEUR ===\n${message}\n\nRéponds de manière générale. Si tu n'as pas d'information spécifique, propose à l'utilisateur d'indexer des documents pertinents.`;
 
     // Générer la réponse avec streaming
-    // Note: Le SDK Gemini peut avoir une syntaxe différente selon la version
-    const result = await model.generateContentStream(fullPrompt);
+    // Essayer chaque modèle Gemini 2.5 jusqu'à trouver un qui fonctionne
+    let result;
+    let lastError: Error | null = null;
+    let workingModel: string | null = null;
+    
+    for (const modelName of availableModels) {
+      try {
+        console.log(`🔍 Tentative avec le modèle Gemini: ${modelName}`);
+        const model = genAI.getGenerativeModel({ model: modelName });
+        
+        // Essayer de générer le contenu avec ce modèle
+        // Utiliser la syntaxe simple d'abord
+        try {
+          result = await model.generateContentStream(fullPrompt);
+          workingModel = modelName;
+          console.log(`✅ Modèle ${modelName} fonctionne !`);
+          break;
+        } catch (streamError) {
+          // Si la syntaxe simple échoue, essayer avec la syntaxe complète
+          const streamErrorMessage = streamError instanceof Error ? streamError.message : String(streamError);
+          if (streamErrorMessage.includes("404") || streamErrorMessage.includes("not found")) {
+            throw streamError; // Re-lancer pour passer au modèle suivant
+          }
+          
+          console.log(`⚠️ Syntaxe simple échouée, essai avec syntaxe complète pour ${modelName}`);
+          try {
+            result = await model.generateContentStream({
+              contents: [{ role: "user", parts: [{ text: fullPrompt }] }],
+            });
+            workingModel = modelName;
+            console.log(`✅ Modèle ${modelName} fonctionne avec syntaxe complète !`);
+            break;
+          } catch (altError) {
+            throw streamError; // Utiliser l'erreur originale
+          }
+        }
+      } catch (modelError) {
+        const errorMessage = modelError instanceof Error ? modelError.message : String(modelError);
+        console.warn(`❌ Modèle ${modelName} non disponible: ${errorMessage.substring(0, 100)}`);
+        lastError = modelError instanceof Error ? modelError : new Error(String(modelError));
+        continue;
+      }
+    }
+    
+    // Si tous les modèles ont échoué
+    if (!result) {
+      const errorDetails = lastError?.message || "Inconnue";
+      throw new Error(
+        `Aucun modèle Gemini 2.5 disponible. ` +
+        `Modèles essayés: ${availableModels.join(", ")}. ` +
+        `Dernière erreur: ${errorDetails}. ` +
+        `Veuillez vérifier: 1) Que votre clé API Gemini est valide, 2) Que votre compte a accès aux modèles Gemini 2.5, ` +
+        `3) Consultez https://ai.google.dev/models pour voir les modèles disponibles dans votre région.`
+      );
+    }
 
     // Créer un ReadableStream pour le streaming
     const encoder = new TextEncoder();

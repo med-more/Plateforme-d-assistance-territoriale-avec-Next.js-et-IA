@@ -48,7 +48,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${cairo.variable} ${amiri.variable}`}>
+      <body className={`${cairo.variable} ${amiri.variable}`} suppressHydrationWarning>
         <Providers>
           <Navbar />
           {children}

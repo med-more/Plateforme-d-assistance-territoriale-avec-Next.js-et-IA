@@ -5,9 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { 
-  Users, Sparkles, FileText, MessageSquare, Upload, ArrowRight, Target, Coins, Building2
+  Users, Sparkles, FileText, MessageSquare, Upload, ArrowRight, Target, Coins, Building2, Twitter, Facebook, Instagram, Youtube
 } from "lucide-react";
-import { RamadanMoonIcon, RamadanStarIcon, RamadanLanternIcon, DonationHandIcon } from "@/components/icons/ramadan-icon";
+import { RamadanStarIcon, RamadanLanternIcon, DonationHandIcon } from "@/components/icons/ramadan-icon";
+import { LottieAnimation } from "@/components/animations/lottie-animation";
+import mosqueAnimation from "@/assets/Mosque Animation.json";
 
 export default function HomePage() {
   useEffect(() => {
@@ -34,73 +36,127 @@ export default function HomePage() {
   }, []);
   return (
     <div className="min-h-screen flex flex-col bg-openai-dark">
-      {/* Hero Section - Aura-Link */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] lg:min-h-[95vh] flex flex-col overflow-hidden pb-8 sm:pb-12 lg:pb-16">
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          style={{ 
-            height: '100%',
-            minHeight: '100%',
-            width: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center'
-          }}
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-        {/* Hero Content */}
-        <div className="relative z-10 flex-1 flex items-center justify-start px-4 sm:px-6 lg:px-8">
-          <div className="text-left space-y-6 sm:space-y-8 max-w-4xl">
-            <div className="space-y-4 relative z-10">
-              <h1 
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl"
-                style={{ 
-                  fontFamily: 'var(--font-amiri), serif',
-                  textShadow: '0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.4)'
-                }}
-              >
-                أورا-لينك
-              </h1>
-              <p 
-                className="text-2xl sm:text-3xl md:text-4xl text-white font-light drop-shadow-xl"
-                style={{
-                  textShadow: '0 3px 15px rgba(0, 0, 0, 0.7), 0 1px 8px rgba(0, 0, 0, 0.5)'
-                }}
-              >
-                Aura-Link
-              </p>
-              <p 
-                className="text-lg sm:text-xl text-white" 
-                style={{ 
-                  fontFamily: 'var(--font-amiri), serif',
-                  textShadow: '0 2px 12px rgba(0, 0, 0, 0.8), 0 1px 6px rgba(0, 0, 0, 0.6)'
-                }}
-              >
-                مساعد الصدقة
-              </p>
-              <p 
-                className="text-base sm:text-lg text-white"
-                style={{
-                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 5px rgba(0, 0, 0, 0.5)'
-                }}
-              >
-                Assistant Sadaqa
-              </p>
-              <p 
-                className="text-sm sm:text-base text-white/95 max-w-2xl mt-6 leading-relaxed"
-                style={{
-                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.6)'
-                }}
-              >
-                Plateforme d'Entraide Citoyenne Intelligente pour les associations caritatives de Casablanca
-              </p>
+      {/* Hero Section - Modern Professional Design */}
+      <section className="relative h-screen flex flex-col overflow-hidden bg-openai-dark">
+        {/* Subtle gradient overlay - matching dashboard style */}
+        <div className="absolute inset-0 bg-gradient-to-br from-openai-green/5 via-transparent to-openai-green/3 pointer-events-none z-0" />
+        
+        {/* Background pattern - subtle geometric shapes */}
+        <div className="absolute inset-0 opacity-5 z-0">
+          <div className="absolute top-16 left-8 w-56 h-56 rounded-full bg-openai-green blur-3xl" />
+          <div className="absolute bottom-32 right-16 w-72 h-72 rounded-full bg-openai-green blur-3xl" />
+        </div>
+
+        {/* Main Content Container */}
+        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 sm:pt-10 pb-12">
+          <div className="container mx-auto max-w-7xl h-full flex items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center w-full">
+              
+              {/* Left Side - Text Content */}
+              <div className="space-y-2 sm:space-y-3 text-center lg:text-left">
+                {/* Arabic Title */}
+                <h1 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-openai-text leading-tight"
+                  style={{ 
+                    fontFamily: 'var(--font-amiri), serif',
+                    letterSpacing: '0.02em'
+                  }}
+                >
+                  رمضان كريم
+                </h1>
+                
+                {/* English Title */}
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-openai-text-muted leading-tight">
+                  Happy Ramadan Kareem
+                </h2>
+                
+                {/* Subtitle */}
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-openai-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                  Plateforme d'Entraide Citoyenne Intelligente pour les associations caritatives de Casablanca
+                </p>
+                
+                {/* Feature Badges */}
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 pt-1">
+                  {[
+                    { icon: Sparkles, text: "IA Assistante" },
+                    { icon: Users, text: "Gestion Familles" },
+                    { icon: FileText, text: "Documents Indexés" }
+                  ].map((feature, index) => {
+                    const Icon = feature.icon;
+                    return (
+                      <div
+                        key={index}
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-openai-darker/50 border border-openai-gray/30 hover:border-openai-green/50 transition-all duration-300"
+                      >
+                        <Icon className="w-3 h-3 text-openai-green" />
+                        <span className="text-[10px] font-medium text-openai-text-muted">
+                          {feature.text}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {/* CTA Button */}
+                <div className="pt-1">
+                  <Link
+                    href="/dashboard"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-openai-green text-white font-semibold text-xs sm:text-sm rounded-lg hover:bg-openai-green-hover transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform"
+                  >
+                    <span>Accéder au Dashboard</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Side - Mosque Animation */}
+              <div className="relative flex items-center justify-center lg:justify-end h-full">
+                <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl h-full flex items-center">
+                  {/* Decorative gradient circle behind animation */}
+                  <div className="absolute inset-0 -z-10">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full bg-gradient-to-br from-openai-green/10 to-transparent blur-3xl" />
+                  </div>
+                  
+                  {/* Mosque Animation */}
+                  <div className="relative w-full h-full max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] flex items-center">
+                    <LottieAnimation 
+                      animationData={mosqueAnimation}
+                      className="w-full h-full drop-shadow-2xl"
+                      loop={true}
+                      autoplay={true}
+                      speed={1}
+                    />
+                  </div>
+                  
+                  {/* Decorative elements */}
+                  <div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-openai-green/5 blur-2xl" />
+                  <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-openai-green/5 blur-3xl" />
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Social Media Icons - Right Side, positioned in viewport */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-4 lg:right-6 z-20 flex flex-col gap-2">
+          {[
+            { name: 'Twitter', Icon: Twitter, href: '#', color: 'bg-sky-500/90 hover:bg-sky-600' },
+            { name: 'Facebook', Icon: Facebook, href: '#', color: 'bg-blue-600/90 hover:bg-blue-700' },
+            { name: 'Instagram', Icon: Instagram, href: '#', color: 'bg-pink-600/90 hover:bg-pink-700' },
+            { name: 'YouTube', Icon: Youtube, href: '#', color: 'bg-red-600/90 hover:bg-red-700' },
+          ].map((social, index) => {
+            const Icon = social.Icon;
+            return (
+              <a
+                key={index}
+                href={social.href}
+                className={`w-8 h-8 sm:w-9 sm:h-9 ${social.color} rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl backdrop-blur-sm`}
+                aria-label={social.name}
+              >
+                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </a>
+            );
+          })}
         </div>
       </section>
 
@@ -260,7 +316,7 @@ export default function HomePage() {
                 titleAr: "اطرح أسئلتك", 
                 title: "Posez vos questions", 
                 desc: "L'Assistant Sadaqa répond instantanément en utilisant vos données",
-                decorationIcon: RamadanMoonIcon
+                decorationIcon: RamadanStarIcon
               }
             ].map((step, index) => {
               const Icon = step.icon;
