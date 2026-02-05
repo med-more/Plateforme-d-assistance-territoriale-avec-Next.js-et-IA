@@ -288,9 +288,9 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-openai-darker/50 backdrop-blur-sm relative rounded-xl border border-openai-gray/30 shadow-xl overflow-hidden">
+    <div className="flex flex-col h-full bg-openai-darker/50 backdrop-blur-sm relative rounded-xl border border-openai-gray/30 shadow-xl overflow-hidden min-h-0">
       {/* Header */}
-      <div className="px-4 sm:px-6 py-4 border-b border-openai-gray/30 bg-openai-dark/50">
+      <div className="px-4 sm:px-6 py-4 border-b border-openai-gray/30 bg-openai-dark/50 flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="relative w-10 h-10 rounded-full bg-openai-green/10 flex items-center justify-center ring-2 ring-openai-green/20">
             <Bot className="w-5 h-5 text-openai-green" />
@@ -306,7 +306,7 @@ export default function ChatPage() {
       </div>
 
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-openai-gray/30 scrollbar-track-transparent">
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-openai-gray/30 scrollbar-track-transparent min-h-0">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full min-h-[400px] sm:min-h-[500px] text-center space-y-6 px-4">
@@ -354,7 +354,7 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area - Fixed at bottom */}
-      <div className="border-t border-openai-gray/30 bg-openai-dark/80 backdrop-blur-sm">
+      <div className="border-t border-openai-gray/30 bg-openai-dark/80 backdrop-blur-sm flex-shrink-0">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="relative">

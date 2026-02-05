@@ -10,7 +10,7 @@ export default function DashboardLayout({
   explorer: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-openai-dark relative overflow-hidden">
+    <div className="h-screen bg-openai-dark relative overflow-hidden flex flex-col">
       {/* Dashboard Frame SVG - Top Right, aligned with navbar bottom */}
       <div className="fixed top-16 sm:top-20 right-0 z-[5] pointer-events-none">
         <Image
@@ -28,9 +28,9 @@ export default function DashboardLayout({
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-openai-green/5 via-transparent to-transparent pointer-events-none z-0" />
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 max-w-[1920px] relative z-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 max-w-[1920px] relative z-20 flex-1 flex flex-col overflow-hidden">
         {/* Header Section */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-6 sm:mb-8 flex-shrink-0">
           <div className="mb-6">
             <div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-openai-text mb-2" style={{ fontFamily: 'var(--font-amiri), serif' }}>
@@ -47,27 +47,31 @@ export default function DashboardLayout({
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 flex-1 min-h-0">
           {/* Chat Panel */}
-          <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-8rem)] flex flex-col">
-            <div className="flex items-center gap-2 mb-4 px-2">
+          <div className="flex flex-col min-h-0">
+            <div className="flex items-center gap-2 mb-4 px-2 flex-shrink-0">
               <div className="w-2 h-2 rounded-full bg-openai-green animate-pulse" />
               <span className="text-xs font-medium text-openai-text-muted uppercase tracking-wide">
                 Assistant Sadaqa
               </span>
             </div>
-            {chat}
+            <div className="flex-1 min-h-0">
+              {chat}
+            </div>
           </div>
           
           {/* Explorer Panel */}
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-4 px-2">
+          <div className="flex flex-col min-h-0">
+            <div className="flex items-center gap-2 mb-4 px-2 flex-shrink-0">
               <div className="w-2 h-2 rounded-full bg-openai-green animate-pulse" />
               <span className="text-xs font-medium text-openai-text-muted uppercase tracking-wide">
                 Gestion des Documents
               </span>
             </div>
-            {explorer}
+            <div className="flex-1 min-h-0 overflow-y-auto">
+              {explorer}
+            </div>
           </div>
         </div>
       </div>
