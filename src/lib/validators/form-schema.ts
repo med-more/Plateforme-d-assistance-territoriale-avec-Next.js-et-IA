@@ -9,8 +9,21 @@ export const documentUploadSchema = z.object({
     .instanceof(File)
     .refine((file) => file.size <= 10 * 1024 * 1024, "Le fichier ne doit pas dépasser 10MB")
     .refine(
-      (file) => ["application/pdf", "text/plain"].includes(file.type),
-      "Seuls les fichiers PDF et TXT sont acceptés"
+      (file) => {
+        const validTypes = [
+          "application/pdf",
+          "text/plain",
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xlsx
+          "application/vnd.ms-excel", // .xls
+        ];
+        const validExtensions = [".pdf", ".txt", ".xlsx", ".xls"];
+        const fileName = file.name.toLowerCase();
+        return (
+          validTypes.includes(file.type) ||
+          validExtensions.some((ext) => fileName.endsWith(ext))
+        );
+      },
+      "Seuls les fichiers PDF, TXT et Excel (XLSX, XLS) sont acceptés"
     ),
 });
 
