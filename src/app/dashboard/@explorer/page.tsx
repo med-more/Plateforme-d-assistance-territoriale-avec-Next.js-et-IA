@@ -140,7 +140,7 @@ export default function ExplorerPage() {
   };
 
   return (
-    <div className="space-y-6 h-full overflow-y-auto">
+    <div className="space-y-4 sm:space-y-6 h-full overflow-y-auto px-3 sm:px-0 pb-20 lg:pb-0">
       {/* Upload Card */}
       <div className="bg-openai-darker/50 backdrop-blur-sm border border-openai-gray/30 rounded-xl p-5 sm:p-7 relative shadow-xl overflow-hidden">
         {/* Decorative gradient */}

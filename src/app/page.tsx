@@ -128,31 +128,31 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-openai-dark">
       {/* Hero Section - Modern Professional Design */}
-      <section className="relative h-screen flex flex-col overflow-hidden bg-openai-dark">
+      <section className="relative min-h-screen flex flex-col overflow-hidden bg-openai-dark max-h-screen">
         {/* Subtle gradient overlay - matching dashboard style */}
         <div className="absolute inset-0 bg-gradient-to-br from-openai-green/5 via-transparent to-openai-green/3 pointer-events-none z-0" />
         
         {/* Background pattern - subtle geometric shapes */}
         <div className="absolute inset-0 opacity-5 z-0">
-          <div className="absolute top-16 left-8 w-56 h-56 rounded-full bg-openai-green blur-3xl" />
-          <div className="absolute bottom-32 right-16 w-72 h-72 rounded-full bg-openai-green blur-3xl" />
+          <div className="absolute top-8 sm:top-16 left-4 sm:left-8 w-32 h-32 sm:w-56 sm:h-56 rounded-full bg-openai-green blur-3xl" />
+          <div className="absolute bottom-16 sm:bottom-32 right-8 sm:right-16 w-40 h-40 sm:w-72 sm:h-72 rounded-full bg-openai-green blur-3xl" />
         </div>
 
         {/* Main Content Container */}
-        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 sm:pt-10 pb-12">
-          <div className="container mx-auto max-w-7xl h-full flex items-center">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center w-full">
+        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 sm:pt-20 lg:pt-8 pb-16 sm:pb-20 lg:pb-12">
+          <div className="container mx-auto max-w-7xl w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-6 items-center w-full">
               
               {/* Left Side - Text Content */}
               <motion.div 
-                className="space-y-2 sm:space-y-3 text-center lg:text-left"
+                className="space-y-3 sm:space-y-4 md:space-y-5 text-center lg:text-left order-2 lg:order-1"
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
               >
                 {/* Arabic Title */}
                 <motion.h1 
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-openai-text leading-tight"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-openai-text leading-tight px-2 sm:px-0"
                   style={{ 
                     fontFamily: 'var(--font-amiri), serif',
                     letterSpacing: '0.02em'
@@ -164,7 +164,7 @@ export default function HomePage() {
                 
                 {/* English Title */}
                 <motion.h2 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-openai-text-muted leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-openai-text-muted leading-tight px-2 sm:px-0"
                   variants={fadeInUp}
                 >
                   Happy Ramadan Kareem
@@ -172,7 +172,7 @@ export default function HomePage() {
                 
                 {/* Subtitle */}
                 <motion.p 
-                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-openai-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-openai-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0 px-4 sm:px-2 lg:px-0"
                   variants={fadeInUp}
                 >
                   Plateforme d'Entraide Citoyenne Intelligente pour les associations caritatives de Casablanca
@@ -180,7 +180,7 @@ export default function HomePage() {
                 
                 {/* Feature Badges */}
                 <motion.div 
-                  className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 pt-1"
+                  className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-1.5 pt-2 sm:pt-1 px-4 sm:px-2 lg:px-0"
                   variants={staggerContainer}
                 >
                   {[
@@ -192,7 +192,7 @@ export default function HomePage() {
                     return (
                       <motion.div
                         key={index}
-                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-openai-darker/50 border border-openai-gray/30 hover:border-openai-green/50 transition-all duration-300"
+                        className="flex items-center gap-1.5 px-3 py-1.5 sm:px-2.5 sm:py-1 rounded-lg bg-openai-darker/50 border border-openai-gray/30 hover:border-openai-green/50 transition-all duration-300"
                         variants={fadeInUp}
                         whileHover={{ 
                           scale: 1.02,
@@ -200,8 +200,8 @@ export default function HomePage() {
                           transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
                         }}
                       >
-                        <Icon className="w-3 h-3 text-openai-green" />
-                        <span className="text-[10px] font-medium text-openai-text-muted">
+                        <Icon className="w-3.5 h-3.5 sm:w-3 sm:h-3 text-openai-green" />
+                        <span className="text-xs sm:text-[10px] font-medium text-openai-text-muted">
                           {feature.text}
                         </span>
                       </motion.div>
@@ -211,12 +211,12 @@ export default function HomePage() {
                 
                 {/* CTA Button */}
                 <motion.div 
-                  className="pt-1"
+                  className="pt-3 sm:pt-2 lg:pt-1 px-4 sm:px-2 lg:px-0"
                   variants={fadeInUp}
                 >
                   <Link href="/dashboard">
                     <motion.div
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-openai-green text-white font-semibold text-xs sm:text-sm rounded-lg shadow-lg"
+                      className="inline-flex items-center gap-2 px-6 py-3 sm:px-5 sm:py-2.5 bg-openai-green text-white font-semibold text-sm sm:text-xs rounded-lg shadow-lg w-full sm:w-auto justify-center"
                       whileHover={{ 
                         scale: 1.02,
                         y: -2,
@@ -226,7 +226,7 @@ export default function HomePage() {
                       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                     >
                       <span>Accéder au Dashboard</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
                     </motion.div>
                   </Link>
                 </motion.div>
@@ -234,19 +234,19 @@ export default function HomePage() {
 
               {/* Right Side - Mosque Animation */}
               <motion.div 
-                className="relative flex items-center justify-center lg:justify-end h-full"
+                className="relative flex items-center justify-center lg:justify-end h-full order-1 lg:order-2"
                 variants={scaleIn}
                 initial="hidden"
                 animate="visible"
               >
-                <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl h-full flex items-center">
+                <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-full flex items-center px-4 sm:px-0">
                   {/* Decorative gradient circle behind animation */}
                   <div className="absolute inset-0 -z-10">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full bg-gradient-to-br from-openai-green/10 to-transparent blur-3xl" />
                   </div>
                   
                   {/* Mosque Animation */}
-                  <div className="relative w-full h-full max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] flex items-center">
+                  <div className="relative w-full h-full max-h-[250px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[400px] xl:max-h-[500px] 2xl:max-h-[600px] flex items-center">
                     <LottieAnimation 
                       animationData={mosqueAnimation}
                       className="w-full h-full drop-shadow-2xl"
@@ -256,9 +256,9 @@ export default function HomePage() {
                     />
                   </div>
                   
-                  {/* Decorative elements */}
-                  <div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-openai-green/5 blur-2xl" />
-                  <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-openai-green/5 blur-3xl" />
+                  {/* Decorative elements - hidden on mobile */}
+                  <div className="hidden sm:block absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-openai-green/5 blur-2xl" />
+                  <div className="hidden sm:block absolute -top-4 -right-4 w-16 h-16 rounded-full bg-openai-green/5 blur-3xl" />
                 </div>
               </motion.div>
             </div>
@@ -267,7 +267,7 @@ export default function HomePage() {
 
         {/* Social Media Icons - Right Side, positioned in viewport */}
         <motion.div 
-          className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-4 lg:right-6 z-20 flex flex-col gap-2"
+          className="hidden sm:flex absolute top-1/2 -translate-y-1/2 right-3 sm:right-4 lg:right-6 z-20 flex-col gap-2"
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
@@ -301,9 +301,9 @@ export default function HomePage() {
       </section>
 
       {/* Main Content Section - Welcome */}
-      <section id="about" className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-openai-dark">
+      <section id="about" className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-openai-dark">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Side - Image */}
             <AnimatedSection>
               <motion.div 
@@ -314,7 +314,7 @@ export default function HomePage() {
                 viewport={{ once: true, margin: "-100px" }}
               >
                 <motion.div 
-                  className="relative rounded-2xl overflow-hidden border-4 border-openai-dark shadow-2xl"
+                  className="relative rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-openai-dark shadow-xl sm:shadow-2xl"
                   whileHover={{ 
                     scale: 1.01,
                     transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
@@ -361,7 +361,7 @@ export default function HomePage() {
 
               {/* Services Grid */}
               <motion.div 
-                className="grid grid-cols-2 gap-4 sm:gap-6 pt-6"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 pt-4 sm:pt-6"
                 variants={staggerContainer}
               >
                 {[
@@ -374,7 +374,7 @@ export default function HomePage() {
                   return (
                     <motion.div
                       key={index}
-                      className="p-4 sm:p-6 bg-openai-darker/50 border border-openai-gray/30 rounded-xl hover:border-openai-green/50 transition-all duration-300"
+                      className="p-3 sm:p-4 md:p-6 bg-openai-darker/50 border border-openai-gray/30 rounded-xl hover:border-openai-green/50 transition-all duration-300"
                       variants={fadeInUp}
                       whileHover={{ 
                         scale: 1.02,
@@ -383,16 +383,16 @@ export default function HomePage() {
                       }}
                       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                     >
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-openai-green/10 flex items-center justify-center mb-3">
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-openai-green" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg bg-openai-green/10 flex items-center justify-center mb-2 sm:mb-3">
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-openai-green" />
                       </div>
-                      <h3 className="text-sm sm:text-base font-semibold text-openai-text mb-1" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+                      <h3 className="text-xs sm:text-sm md:text-base font-semibold text-openai-text mb-1" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                         {service.titleAr}
                       </h3>
-                      <h3 className="text-xs sm:text-sm font-medium text-openai-text-muted mb-2">
+                      <h3 className="text-[10px] sm:text-xs md:text-sm font-medium text-openai-text-muted mb-1 sm:mb-2">
                         {service.title}
                       </h3>
-                      <p className="text-xs text-openai-text-muted/70">
+                      <p className="text-[10px] sm:text-xs text-openai-text-muted/70">
                         {service.desc}
                       </p>
                     </motion.div>
@@ -406,29 +406,29 @@ export default function HomePage() {
       </section>
 
       {/* About Section - Our Mission */}
-      <section id="services" className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-openai-dark">
+      <section id="services" className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-openai-dark">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Side - Content */}
-            <div className="space-y-6 order-2 lg:order-1">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-openai-text" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 order-2 lg:order-1">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-openai-text" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                 مهمتنا
               </h2>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-openai-text-muted mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-openai-text-muted mb-3 sm:mb-4">
                 Notre Mission
               </h2>
-              <p className="text-base sm:text-lg text-openai-text-muted leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-openai-text-muted leading-relaxed">
                 Notre plateforme utilise l'intelligence artificielle pour optimiser la gestion des opérations caritatives. 
                 Nous aidons les associations à mieux coordonner les distributions de Quffat Ramadan, suivre les familles nécessiteuses 
                 par quartier, et gérer efficacement les dons de Zakat et Sadaqa grâce à notre assistant IA.
               </p>
-              <p className="text-sm sm:text-base text-openai-text-muted/80 leading-relaxed" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+              <p className="text-xs sm:text-sm md:text-base text-openai-text-muted/80 leading-relaxed" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                 تستخدم منصتنا الذكاء الاصطناعي لتحسين إدارة العمليات الخيرية. نساعد الجمعيات على تنسيق توزيع قفة رمضان بشكل أفضل، 
                 ومتابعة الأسر المحتاجة حسب الحي، وإدارة التبرعات من الزكاة والصدقة بكفاءة من خلال مساعدنا الذكي.
               </p>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-openai-green text-openai-text font-semibold rounded-lg hover:bg-openai-green-hover transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-openai-green text-openai-text font-semibold text-sm sm:text-base rounded-lg hover:bg-openai-green-hover transition-colors w-full sm:w-auto justify-center"
               >
                 <span>Accéder au Dashboard</span>
                 <ArrowRight className="w-4 h-4" />
@@ -437,7 +437,7 @@ export default function HomePage() {
 
             {/* Right Side - Image */}
             <div className="relative order-1 lg:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl">
                 <div 
                   className="aspect-[3/4] bg-cover bg-center"
                   style={{
@@ -452,20 +452,20 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section - Responsive */}
-      <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-openai-dark">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 bg-openai-dark">
         <div className="relative z-10 container mx-auto max-w-6xl">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-openai-text mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+          <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-openai-text mb-2 sm:mb-3 md:mb-4" style={{ fontFamily: 'var(--font-amiri), serif' }}>
               كيف يعمل
             </h2>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-openai-text-muted mb-6 sm:mb-8 lg:mb-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-openai-text-muted mb-4 sm:mb-6 md:mb-8 lg:mb-12">
               Comment ça fonctionne
             </h2>
-            <p className="text-base sm:text-lg text-openai-text-muted max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-base md:text-lg text-openai-text-muted max-w-2xl mx-auto px-4">
               En trois étapes simples, transformez votre gestion caritative
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
             {[
               { 
                 number: "01", 
@@ -497,30 +497,30 @@ export default function HomePage() {
               return (
                 <div key={index} className="relative group text-center">
                   
-                  <div className="relative p-6 sm:p-8 bg-openai-dark border border-openai-gray/30 rounded-2xl hover:border-openai-green/50 transition-all duration-300">
+                  <div className="relative p-5 sm:p-6 md:p-8 bg-openai-dark border border-openai-gray/30 rounded-xl sm:rounded-2xl hover:border-openai-green/50 transition-all duration-300">
                     {/* Step Number */}
-                    <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-openai-green text-white font-bold text-base sm:text-lg flex items-center justify-center shadow-lg">
+                    <div className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 md:-top-4 md:-left-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-openai-green text-white font-bold text-sm sm:text-base md:text-lg flex items-center justify-center shadow-lg">
                       {step.number}
                     </div>
                     
                     {/* Icon */}
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-openai-green/10 border border-openai-green/20 flex items-center justify-center mx-auto mb-4 sm:mb-6 transition-transform duration-500 ease-[0.25,0.1,0.25,1] group-hover:scale-105">
-                      <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-openai-green" />
+                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-openai-green/10 border border-openai-green/20 flex items-center justify-center mx-auto mb-3 sm:mb-4 md:mb-6 transition-transform duration-500 ease-[0.25,0.1,0.25,1] group-hover:scale-105">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-openai-green" />
                       {DecorationIcon && (
-                        <div className="absolute -top-2 -right-2 animate-pulse">
-                          <DecorationIcon className="w-4 h-4 text-openai-green/50" />
+                        <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 animate-pulse">
+                          <DecorationIcon className="w-3 h-3 sm:w-4 sm:h-4 text-openai-green/50" />
                         </div>
                       )}
                     </div>
                     
                     {/* Content */}
-                    <h3 className="text-lg sm:text-xl font-bold text-openai-text mb-1.5 sm:mb-2" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-openai-text mb-1 sm:mb-1.5 md:mb-2" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                       {step.titleAr}
                     </h3>
-                    <h3 className="text-base sm:text-lg font-semibold text-openai-text-muted mb-3 sm:mb-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-semibold text-openai-text-muted mb-2 sm:mb-3 md:mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-openai-text-muted leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-openai-text-muted leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -532,10 +532,10 @@ export default function HomePage() {
       </section>
 
       {/* Footer Section */}
-      <footer id="contact" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-openai-dark">
+      <footer id="contact" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-openai-dark">
         <div className="container mx-auto max-w-4xl">
           {/* SVG Frame Container */}
-          <div className="relative min-h-[400px] sm:min-h-[500px] flex items-center justify-center">
+          <div className="relative min-h-[300px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center">
             {/* SVG Frame as background */}
             <div className="absolute inset-0 w-full h-full">
               <Image
@@ -551,20 +551,20 @@ export default function HomePage() {
             </div>
             
             {/* Content inside frame */}
-            <div className="relative z-10 text-center space-y-6 sm:space-y-8 py-8 sm:py-12 px-6 sm:px-8 md:px-12 w-full pt-24 sm:pt-32 md:pt-40">
+            <div className="relative z-10 text-center space-y-4 sm:space-y-6 md:space-y-8 py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 w-full pt-16 sm:pt-24 md:pt-32 lg:pt-40">
               {/* Mission Statement */}
-              <div className="space-y-4">
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-openai-text leading-relaxed" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+              <div className="space-y-3 sm:space-y-4">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-openai-text leading-relaxed px-2" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                   التضامن والمساعدة للجمعيات الخيرية
                 </p>
-                <p className="text-lg sm:text-xl text-openai-text-muted leading-relaxed max-w-3xl mx-auto">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-openai-text-muted leading-relaxed max-w-3xl mx-auto px-4">
                   Solidarité et assistance pour les associations caritatives de Casablanca
                 </p>
               </div>
 
               {/* Footer Links */}
-              <div className="pt-8 border-t border-openai-gray/30">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 text-sm text-openai-text-muted">
+              <div className="pt-6 sm:pt-8 border-t border-openai-gray/30">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm text-openai-text-muted">
                   <Link href="/dashboard" className="hover:text-openai-text transition-colors">
                     Dashboard
                   </Link>
@@ -578,7 +578,7 @@ export default function HomePage() {
                     Contact
                   </Link>
                 </div>
-                <p className="mt-6 text-xs text-openai-text-muted/60">
+                <p className="mt-4 sm:mt-6 text-[10px] sm:text-xs text-openai-text-muted/60 px-4">
                   © 2026 Aura-Link - Plateforme d'Entraide Citoyenne Intelligente. Tous droits réservés.
                 </p>
               </div>

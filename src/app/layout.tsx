@@ -20,6 +20,12 @@ const amiri = Amiri({
 export const metadata: Metadata = {
   title: "Aura-Link | Assistant Sadaqa - Plateforme d'Entraide Citoyenne",
   description: "Plateforme d'assistance territoriale intelligente pour les associations caritatives de Casablanca",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
 };
 
 export default function RootLayout({
