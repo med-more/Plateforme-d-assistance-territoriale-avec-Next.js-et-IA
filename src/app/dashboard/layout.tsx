@@ -43,7 +43,7 @@ export default function DashboardLayout({
                 Dashboard
               </h2>
               <p className="text-xs sm:text-sm text-openai-text-muted mt-1 sm:mt-2 max-w-2xl hidden md:block">
-                Gérez vos documents, consultez les familles nécessiteuses et interagissez avec l'Assistant Sadaqa
+                Gérez vos documents, consultez les familles nécessiteuses et interagissez avec l&apos;Assistant Sadaqa
               </p>
             </div>
           </div>

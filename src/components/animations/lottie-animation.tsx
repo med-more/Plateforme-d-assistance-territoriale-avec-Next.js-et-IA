@@ -21,10 +21,15 @@ export function LottieAnimation({
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   useEffect(() => {
-    if (lottieRef.current && autoplay) {
-      lottieRef.current.play();
+    if (lottieRef.current) {
+      if (autoplay) {
+        lottieRef.current.play();
+      }
+      if (speed !== undefined && speed !== 1) {
+        lottieRef.current.setSpeed(speed);
+      }
     }
-  }, [autoplay]);
+  }, [autoplay, speed]);
 
   return (
     <Lottie
@@ -32,7 +37,6 @@ export function LottieAnimation({
       animationData={animationData}
       loop={loop}
       autoplay={autoplay}
-      speed={speed}
       className={className}
     />
   );

@@ -175,7 +175,7 @@ export default function HomePage() {
                   className="text-base sm:text-lg md:text-xl lg:text-2xl text-openai-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0 px-4 sm:px-2 lg:px-0"
                   variants={fadeInUp}
                 >
-                  Plateforme d'Entraide Citoyenne Intelligente pour les associations caritatives de Casablanca
+                  Plateforme d&apos;Entraide Citoyenne Intelligente pour les associations caritatives de Casablanca
                 </motion.p>
                 
                 {/* Feature Badges */}
@@ -349,9 +349,9 @@ export default function HomePage() {
                   Welcome to Aura-Link
                 </h2>
                 <p className="text-base sm:text-lg text-openai-text-muted leading-relaxed mb-6">
-                  Plateforme d'Entraide Citoyenne Intelligente dédiée aux associations caritatives de Casablanca. 
+                  Plateforme d&apos;Entraide Citoyenne Intelligente dédiée aux associations caritatives de Casablanca. 
                   Notre mission est de faciliter la gestion des dons, la coordination des distributions et 
-                  l'assistance aux familles nécessiteuses pendant le Ramadan et tout au long de l'année.
+                  l&apos;assistance aux familles nécessiteuses pendant le Ramadan et tout au long de l&apos;année.
                 </p>
                 <p className="text-sm sm:text-base text-openai-text-muted/80 leading-relaxed" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                   منصة التضامن الذكية المخصصة للجمعيات الخيرية في الدار البيضاء. مهمتنا هي تسهيل إدارة التبرعات 
@@ -418,7 +418,7 @@ export default function HomePage() {
                 Notre Mission
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-openai-text-muted leading-relaxed">
-                Notre plateforme utilise l'intelligence artificielle pour optimiser la gestion des opérations caritatives. 
+                Notre plateforme utilise l&apos;intelligence artificielle pour optimiser la gestion des opérations caritatives. 
                 Nous aidons les associations à mieux coordonner les distributions de Quffat Ramadan, suivre les familles nécessiteuses 
                 par quartier, et gérer efficacement les dons de Zakat et Sadaqa grâce à notre assistant IA.
               </p>
@@ -579,7 +579,7 @@ export default function HomePage() {
                   </Link>
                 </div>
                 <p className="mt-4 sm:mt-6 text-[10px] sm:text-xs text-openai-text-muted/60 px-4">
-                  © 2026 Aura-Link - Plateforme d'Entraide Citoyenne Intelligente. Tous droits réservés.
+                  © 2026 Aura-Link - Plateforme d&apos;Entraide Citoyenne Intelligente. Tous droits réservés.
                 </p>
               </div>
             </div>

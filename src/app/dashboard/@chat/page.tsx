@@ -98,8 +98,13 @@ function useTypingEffect(text: string, speed: number = 15) {
 
 // Message component with typing effect for assistant messages
 function ChatMessage({ message, mounted, index }: { message: Message; mounted: boolean; index: number }) {
+  // Always call the hook, but only use it for assistant messages
+  const typingEffectHook = useTypingEffect(
+    message.role === "assistant" ? message.content : "",
+    15
+  );
   const typingEffect = message.role === "assistant" 
-    ? useTypingEffect(message.content, 15)
+    ? typingEffectHook
     : { displayedText: message.content, isTyping: false };
 
   return (
