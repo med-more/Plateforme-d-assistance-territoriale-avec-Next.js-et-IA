@@ -31,9 +31,10 @@ export async function vectorAction(
 ): Promise<VectorActionResult> {
   try {
     if (!PINECONE_API_KEY) {
+      console.error("PINECONE_API_KEY is missing. Check Vercel environment variables.");
       return {
         success: false,
-        error: "PINECONE_API_KEY n'est pas configurée",
+        error: "PINECONE_API_KEY n'est pas configurée. Veuillez configurer la variable d'environnement PINECONE_API_KEY dans les paramètres Vercel.",
       };
     }
 

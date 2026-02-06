@@ -21,7 +21,8 @@ export async function chatAction(
     }
 
     if (!PINECONE_API_KEY) {
-      return "Erreur: PINECONE_API_KEY n'est pas configurée. Veuillez configurer votre clé API dans .env.local";
+      console.error("PINECONE_API_KEY is missing. Check Vercel environment variables.");
+      return "Erreur: PINECONE_API_KEY n'est pas configurée. Veuillez configurer la variable d'environnement PINECONE_API_KEY dans les paramètres de votre projet Vercel (Settings → Environment Variables).";
     }
 
     // Initialiser Gemini
