@@ -433,8 +433,8 @@ export default function ChatPage() {
         </div>
       </div>
 
-      {/* Input Area - Fixed at bottom */}
-      <div className="border-t border-openai-gray/30 bg-openai-dark/80 backdrop-blur-sm flex-shrink-0 z-10">
+      {/* Input Area - Fixed at bottom with safe area for mobile tabs */}
+      <div className="border-t border-openai-gray/30 bg-openai-dark/80 backdrop-blur-sm flex-shrink-0 z-40 lg:pb-0 pb-20" style={{ paddingBottom: 'max(5rem, calc(env(safe-area-inset-bottom) + 5rem))' }}>
         <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 lg:py-5">
           <Form {...form}>
             <form 

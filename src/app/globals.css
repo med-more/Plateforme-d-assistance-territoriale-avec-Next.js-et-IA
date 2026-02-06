@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile viewport fixes */
+@supports (height: 100dvh) {
+  html {
+    height: 100dvh;
+    height: -webkit-fill-available;
+  }
+  
+  body {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+}
+
 @layer base {
   :root {
     /* Dark theme colors (default) - Black background with white text */

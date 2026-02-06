@@ -13,7 +13,7 @@ export default function DashboardLayout({
   explorer: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen h-screen bg-openai-dark relative overflow-hidden flex flex-col">
+    <div className="min-h-screen h-[100dvh] bg-openai-dark relative overflow-hidden flex flex-col" style={{ height: '100dvh', minHeight: '-webkit-fill-available' }}>
       {/* Dashboard Frame SVG - Top Right, aligned with navbar bottom - Hidden on mobile */}
       <div className="hidden sm:block fixed top-16 sm:top-20 right-0 z-[5] pointer-events-none">
         <Image
@@ -31,7 +31,7 @@ export default function DashboardLayout({
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-openai-green/5 via-transparent to-transparent pointer-events-none z-0" />
       
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 lg:py-6 xl:py-8 max-w-[1920px] relative z-20 flex-1 flex flex-col overflow-hidden min-h-0">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-0 sm:py-2 md:py-3 lg:py-4 xl:py-6 max-w-[1920px] relative z-20 flex-1 flex flex-col overflow-hidden min-h-0">
         {/* Header Section - Very compact on mobile, hidden on small mobile */}
         <div className="mb-2 sm:mb-3 md:mb-4 lg:mb-6 xl:mb-8 flex-shrink-0 hidden sm:block">
           <div className="mb-2 sm:mb-3 md:mb-4 lg:mb-6">
@@ -50,7 +50,7 @@ export default function DashboardLayout({
         </div>
 
         {/* Mobile: Tab Navigation System */}
-        <div className="lg:hidden flex-1 min-h-0 overflow-hidden">
+        <div className="lg:hidden flex-1 min-h-0 overflow-hidden pt-0">
           <MobileTabs chat={chat} explorer={explorer} />
         </div>
 
