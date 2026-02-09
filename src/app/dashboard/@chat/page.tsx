@@ -128,7 +128,7 @@ function ChatMessage({ message, mounted, index }: { message: Message; mounted: b
       )}
       
       <div
-        className={`flex flex-col gap-1 sm:gap-1.5 max-w-[90%] sm:max-w-[85%] md:max-w-[80%] ${
+        className={`flex flex-col gap-1 sm:gap-1.5 w-full max-w-[92%] sm:max-w-[85%] md:max-w-[80%] ${
           message.role === "user" ? "items-end" : "items-start"
         }`}
       >
@@ -354,7 +354,7 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-full max-h-full bg-openai-darker/50 backdrop-blur-sm relative rounded-lg sm:rounded-xl border border-openai-gray/30 shadow-xl overflow-hidden min-h-0" style={{ pointerEvents: 'auto' }}>
+    <div className="flex flex-col h-full max-h-full bg-openai-darker/50 backdrop-blur-sm relative rounded-none sm:rounded-lg lg:rounded-xl border-0 sm:border border-openai-gray/30 shadow-xl overflow-hidden min-h-0 w-full" style={{ pointerEvents: 'auto' }}>
       {/* Header - Hidden on mobile */}
       <div className="hidden lg:flex px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 lg:py-4 border-b border-openai-gray/30 bg-openai-dark/50 flex-shrink-0">
         <div className="flex items-center gap-2 sm:gap-3">
@@ -384,30 +384,32 @@ export default function ChatPage() {
           overflowY: 'auto', // Use auto instead of scroll for better mobile support
           touchAction: 'pan-y pinch-zoom', // Enable vertical scrolling and pinch zoom
           pointerEvents: 'auto', // Ensure pointer events work
-          zIndex: 1 // Ensure it's above other elements
+          zIndex: 1, // Ensure it's above other elements
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
-        <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
+        <div className="max-w-3xl mx-auto px-2 sm:px-4 md:px-6 py-3 sm:py-6 md:py-8 w-full flex-1 flex flex-col">
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] text-center space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4">
+            <div className="flex flex-col items-center justify-center flex-1 text-center space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4 mx-auto">
               <div className="relative">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-openai-green/20 to-openai-green/5 flex items-center justify-center ring-2 sm:ring-4 ring-openai-green/10">
                   <RamadanMoonIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-openai-green" />
                 </div>
                 <SparklesIcon className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 text-openai-green/60 animate-pulse" />
               </div>
-              <div className="space-y-2 sm:space-y-3 max-w-md">
+              <div className="space-y-2 sm:space-y-3 max-w-md mx-auto">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-openai-text" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                   مساعد الصدقة
                 </h3>
                 <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-openai-text-muted">
                   Assistant Sadaqa
                 </h4>
-                <p className="text-xs sm:text-sm md:text-base text-openai-text-muted mt-2 sm:mt-4 leading-relaxed px-2">
+                <p className="text-xs sm:text-sm md:text-base text-openai-text-muted mt-2 sm:mt-4 leading-relaxed px-2 text-center">
                   Posez-moi des questions sur les familles nécessiteuses, les dons,
                   les distributions de Quffat Ramadan, ou les guides de Zakat.
                 </p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-openai-text-muted mt-2 sm:mt-3 leading-relaxed px-2" style={{ fontFamily: 'var(--font-amiri), serif' }}>
+                <p className="text-[10px] sm:text-xs md:text-sm text-openai-text-muted mt-2 sm:mt-3 leading-relaxed px-2 text-center" style={{ fontFamily: 'var(--font-amiri), serif' }}>
                   اسألني عن الأسر المحتاجة، التبرعات، توزيع قفة رمضان، أو أدلة الزكاة
                 </p>
               </div>
@@ -438,13 +440,13 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area - Fixed at bottom with safe area for mobile tabs */}
-      <div className="border-t border-openai-gray/30 bg-openai-dark backdrop-blur-md flex-shrink-0 lg:static lg:pb-0 fixed left-0 right-0 lg:relative lg:bottom-auto shadow-lg" style={{ 
+      <div className="border-t border-openai-gray/30 bg-openai-dark backdrop-blur-md flex-shrink-0 lg:static lg:pb-0 fixed left-0 right-0 lg:relative lg:bottom-auto shadow-lg w-full" style={{ 
         bottom: 'max(calc(6.5rem + env(safe-area-inset-bottom)), calc(80px + env(safe-area-inset-bottom)))',
         paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
         zIndex: 100,
         backgroundColor: 'rgba(0, 0, 0, 0.95)'
       }}>
-        <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 lg:py-5">
+        <div className="max-w-3xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 lg:py-5 w-full">
           <Form {...form}>
             <form 
               onSubmit={(e) => {
@@ -461,13 +463,13 @@ export default function ChatPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <div className="relative flex items-center gap-3">
-                        <div className="flex-1 relative">
+                      <div className="relative flex items-center gap-2 sm:gap-3 w-full">
+                        <div className="flex-1 relative w-full">
                           <Input
                             placeholder="Posez votre question..."
                             {...field}
                             disabled={form.formState.isSubmitting}
-                            className="min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] pr-11 sm:pr-12 md:pr-14 lg:pr-16 py-2 sm:py-2.5 md:py-3 lg:py-4 text-sm sm:text-base bg-openai-dark border-openai-gray/50 text-openai-text placeholder:text-openai-text-muted/60 focus:border-openai-green/50 focus:ring-2 focus:ring-openai-green/20 rounded-lg sm:rounded-xl transition-all"
+                            className="w-full min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] pr-10 sm:pr-12 md:pr-14 lg:pr-16 py-2 sm:py-2.5 md:py-3 lg:py-4 text-sm sm:text-base bg-openai-dark border-openai-gray/50 text-openai-text placeholder:text-openai-text-muted/60 focus:border-openai-green/50 focus:ring-2 focus:ring-openai-green/20 rounded-lg sm:rounded-xl transition-all"
                             onKeyDown={(e) => {
                               if (e.key === "Enter" && !e.shiftKey) {
                                 e.preventDefault();

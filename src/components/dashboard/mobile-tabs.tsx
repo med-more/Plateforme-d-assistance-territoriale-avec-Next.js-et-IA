@@ -14,9 +14,9 @@ export function MobileTabs({ chat, explorer }: MobileTabsProps) {
   const [activeTab, setActiveTab] = useState<"chat" | "documents">("chat");
 
   return (
-    <div className="flex flex-col h-full w-full lg:hidden" style={{ height: '100%', maxHeight: '100%' }}>
+    <div className="flex flex-col h-full w-full lg:hidden" style={{ height: '100%', maxHeight: '100%', width: '100%' }}>
       {/* Content Area */}
-      <div className="flex-1 min-h-0 overflow-hidden relative pt-16 sm:pt-20" style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))', pointerEvents: 'auto' }}>
+      <div className="flex-1 min-h-0 overflow-hidden relative pt-16 sm:pt-20 w-full" style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))', pointerEvents: 'auto' }}>
         <AnimatePresence mode="wait">
           {activeTab === "chat" ? (
             <motion.div
@@ -48,8 +48,8 @@ export function MobileTabs({ chat, explorer }: MobileTabsProps) {
       </div>
 
       {/* Bottom Tab Navigation - Fixed at bottom with safe area */}
-      <div className="flex-shrink-0 border-t border-openai-gray/30 bg-openai-dark/95 backdrop-blur-sm fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]" style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}>
-        <div className="flex items-center justify-around px-2 py-2.5 max-w-md mx-auto">
+      <div className="flex-shrink-0 border-t border-openai-gray/30 bg-openai-dark/95 backdrop-blur-sm fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.3)] w-full" style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}>
+        <div className="flex items-center justify-around px-2 sm:px-4 py-2.5 w-full max-w-md mx-auto">
           {/* Chat Tab */}
           <button
             onClick={() => setActiveTab("chat")}
