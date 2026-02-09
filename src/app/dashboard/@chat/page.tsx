@@ -354,9 +354,9 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-full max-h-full bg-openai-darker/50 backdrop-blur-sm relative rounded-lg sm:rounded-xl border border-openai-gray/30 shadow-xl overflow-hidden min-h-0">
-      {/* Header - Very compact on mobile */}
-      <div className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 lg:py-4 border-b border-openai-gray/30 bg-openai-dark/50 flex-shrink-0">
+    <div className="flex flex-col h-full max-h-full bg-openai-darker/50 backdrop-blur-sm relative rounded-lg sm:rounded-xl border border-openai-gray/30 shadow-xl overflow-hidden min-h-0" style={{ pointerEvents: 'auto' }}>
+      {/* Header - Hidden on mobile */}
+      <div className="hidden lg:flex px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 lg:py-4 border-b border-openai-gray/30 bg-openai-dark/50 flex-shrink-0">
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-openai-green/10 flex items-center justify-center ring-2 ring-openai-green/20 flex-shrink-0">
             <Bot className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-openai-green" />
@@ -374,13 +374,17 @@ export default function ChatPage() {
       {/* Messages Container */}
       <div 
         ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-openai-gray/30 scrollbar-track-transparent min-h-0"
+        className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-openai-gray/30 scrollbar-track-transparent min-h-0 pb-[calc(13rem+env(safe-area-inset-bottom))] lg:pb-0"
         style={{ 
           WebkitOverflowScrolling: 'touch', // Smooth scrolling on iOS
           overscrollBehavior: 'contain', // Prevent scroll chaining on mobile
           height: '100%',
           maxHeight: '100%',
-          position: 'relative'
+          position: 'relative',
+          overflowY: 'auto', // Use auto instead of scroll for better mobile support
+          touchAction: 'pan-y pinch-zoom', // Enable vertical scrolling and pinch zoom
+          pointerEvents: 'auto', // Ensure pointer events work
+          zIndex: 1 // Ensure it's above other elements
         }}
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
@@ -434,7 +438,12 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area - Fixed at bottom with safe area for mobile tabs */}
-      <div className="border-t border-openai-gray/30 bg-openai-dark/80 backdrop-blur-sm flex-shrink-0 z-40 lg:pb-0 pb-20" style={{ paddingBottom: 'max(5rem, calc(env(safe-area-inset-bottom) + 5rem))' }}>
+      <div className="border-t border-openai-gray/30 bg-openai-dark backdrop-blur-md flex-shrink-0 lg:static lg:pb-0 fixed left-0 right-0 lg:relative lg:bottom-auto shadow-lg" style={{ 
+        bottom: 'max(calc(6.5rem + env(safe-area-inset-bottom)), calc(80px + env(safe-area-inset-bottom)))',
+        paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
+        zIndex: 100,
+        backgroundColor: 'rgba(0, 0, 0, 0.95)'
+      }}>
         <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 lg:py-5">
           <Form {...form}>
             <form 

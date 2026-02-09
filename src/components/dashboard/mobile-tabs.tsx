@@ -16,7 +16,7 @@ export function MobileTabs({ chat, explorer }: MobileTabsProps) {
   return (
     <div className="flex flex-col h-full w-full lg:hidden" style={{ height: '100%', maxHeight: '100%' }}>
       {/* Content Area */}
-      <div className="flex-1 min-h-0 overflow-hidden relative pt-16 sm:pt-20" style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))' }}>
+      <div className="flex-1 min-h-0 overflow-hidden relative pt-16 sm:pt-20" style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))', pointerEvents: 'auto' }}>
         <AnimatePresence mode="wait">
           {activeTab === "chat" ? (
             <motion.div
@@ -26,8 +26,11 @@ export function MobileTabs({ chat, explorer }: MobileTabsProps) {
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               className="absolute inset-0 h-full w-full"
+              style={{ pointerEvents: 'none' }}
             >
-              {chat}
+              <div style={{ pointerEvents: 'auto', height: '100%', width: '100%' }}>
+                {chat}
+              </div>
             </motion.div>
           ) : (
             <motion.div
