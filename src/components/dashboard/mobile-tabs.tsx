@@ -16,7 +16,7 @@ export function MobileTabs({ chat, explorer }: MobileTabsProps) {
   return (
     <div className="flex flex-col h-full w-full lg:hidden" style={{ height: '100%', maxHeight: '100%' }}>
       {/* Content Area */}
-      <div className="flex-1 min-h-0 overflow-hidden relative pt-0 pb-16">
+      <div className="flex-1 min-h-0 overflow-hidden relative pt-16 sm:pt-20" style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))' }}>
         <AnimatePresence mode="wait">
           {activeTab === "chat" ? (
             <motion.div
